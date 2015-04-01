@@ -1602,7 +1602,7 @@
                 var can_go_player_up = this.can_go_player_up(
                     this.player_grid_data);
 
-                if (!can_go_player_up) {
+                if (!can_go_player_up && !$w.hasClass('static')) {
                     // target can't go up
                     // player cant't go up
                     // so we need to move widget down to a position that dont
@@ -2223,6 +2223,7 @@
     * @return {Class} Returns the instance of the Gridster Class.
     */
     fn.move_widget_down = function($widget, y_units) {
+        if ($widget.hasClass('static')) { return false }
         var el_grid_data, actual_row, moved, y_diff;
 
         if (y_units <= 0) { return false; }
